@@ -8,15 +8,27 @@ export default class App extends React.Component {
     super();
 
     this.state = {
-      pets: [{id:1,name:"matt",age:4,weight:12,type:"pomerainian",gender:"male"},{id:2,name:"matt2",age:4,weight:12,type:"pomerainian",gender:"male"}],
+      pets: [{id:1, name:'matt', age: 3, weight: 10, gender:'male', type: 'dog', isAdopted: false}, {id:2, name: 'matt2', age: 3, weight: 10, gender: 'male', type: 'dog', isAdopted:false}],
       adoptedPets: [],
       filters: {
         type: 'all',
       }
     };
+    this.createAdoptedPet = this.createAdoptedPet.bind(this)
+
   }
 
+  createAdoptedPet(id){
+    this.setState(function(previousState){
+      return {
+        adoptedPets: [...previousState.adoptedPets, id]
+      }
+    })
+  }
+
+
   render() {
+    debugger
     return (
       <div className="ui container">
         <header>
@@ -28,7 +40,7 @@ export default class App extends React.Component {
               <Filters />
             </div>
             <div className="twelve wide column">
-              <PetBrowser pets={this.state.pets}/>
+              <PetBrowser pets={this.state.pets} adopt={this.createAdoptedPet}/>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ class PetBrowser extends React.Component {
 
   createPet (pet){
     return (
-      <Pet data={pet} key={pet.id}/ >
+      <Pet data={pet} key={pet.id} adopted={this.props.adopt}/>
     )
   }
 

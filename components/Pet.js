@@ -4,13 +4,24 @@ class Pet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: this.props.data.id,
       name: this.props.data.name,
       gender: this.props.data.gender,
       type: this.props.data.type,
       age: this.props.data.age,
-      weight: this.props.data.weight
+      weight: this.props.data.weight,
+      isAdopted: this.props.data.isAdopted
     }
-  }
+    this.handleClick = this.handleClick.bind(this)
+    }
+
+handleClick(event){
+  this.setState({
+    isAdopted: true
+  })
+  this.props.adopted(this.state.id)
+}
+
 
   render() {
     return (
@@ -27,8 +38,7 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          <button className="ui primary button">Adopt pet</button>
-          <button className="ui disabled button">Already adopted</button>
+        {this.state.isAdopted ? <button className="ui disabled button">Already adopted</button> : <button className="ui primary button" onClick={this.handleClick}>Adopt pet</button> }
         </div>
       </div>
     );
