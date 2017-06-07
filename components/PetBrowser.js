@@ -3,10 +3,20 @@ const React = require('react');
 const Pet = require('./Pet');
 
 class PetBrowser extends React.Component {
+
+
+  createPet (pet){
+    return (
+      <Pet data={pet} key={pet.id}/ >
+    )
+  }
+
   render() {
     return (
       <div className="ui cards">
-        <code>&lt;Pet /&gt;</code> &nbsp; components should go here
+      {this.props.pets.map( pet =>
+        this.createPet(pet)
+      )}
       </div>
     );
   }
